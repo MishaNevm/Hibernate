@@ -19,6 +19,7 @@ public class Ls3 {
             person = session.get(Person.class, 5);
             person.setName("Test Name3");
             session.getTransaction().commit();
+            System.out.println("Hello");
         } finally {
             sessionFactory.close();
         }
