@@ -1,12 +1,12 @@
-package org.example;
+package org.example.ls3;
 
-import org.example.ls2.model.Person;
+import org.example.ls3.model.Person;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 
-public class Ls2 {
+public class Ls3 {
     public static void main(String[] args) {
         Configuration configuration = new Configuration().addAnnotatedClass(Person.class);
         SessionFactory sessionFactory = configuration.buildSessionFactory();
