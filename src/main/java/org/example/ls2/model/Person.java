@@ -1,4 +1,4 @@
-package org.example.ls1.model;
+package org.example.ls2.model;
 
 
 import javax.persistence.*;
