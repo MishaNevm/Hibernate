@@ -1,4 +1,4 @@
-package org.example;
+package org.example.ls2;
 
 import org.example.ls2.model.Person;
 import org.hibernate.Session;
