@@ -1,28 +1,27 @@
-package org.example.ls1.model;
-
+package org.example.pr1.model;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Person")
+@Table(name = "person")
 public class Person {
-
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
-
-    @Column(name = "age")
-    int age;
+    private int id;
 
     @Column(name = "name")
-    String name;
+    private String name;
 
-    public Person(){}
+    @Column(name = "age")
+    private int age;
 
-    public Person(int age, String name) {
-        this.age = age;
+    public Person() {
+    }
+
+    public Person(String name, int age) {
         this.name = name;
+        this.age = age;
     }
 
     public int getId() {
@@ -33,14 +32,6 @@ public class Person {
         this.id = id;
     }
 
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
     public String getName() {
         return name;
     }
@@ -49,8 +40,16 @@ public class Person {
         this.name = name;
     }
 
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
     @Override
     public String toString() {
-        return "id=" + id + ", age=" + age + ", name='" + name;
+        return "id = " + id + ", name=" + name + ", age=" + age;
     }
 }
