@@ -1,15 +1,12 @@
-package org.example.ls5.model;
+package org.example.ls6.model;
 
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "Person")
 public class Person {
-
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,11 +18,12 @@ public class Person {
     @Column(name = "age")
     private int age;
 
-    @OneToMany(mappedBy = "person")
+    @OneToOne(mappedBy = "person")
     @Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.DELETE})
-    private List<Item> items;
+    Passport passport;
 
     public Person() {
+
     }
 
     public Person(String name, int age) {
@@ -57,22 +55,17 @@ public class Person {
         this.age = age;
     }
 
-    public List<Item> getItems() {
-        return items;
+    public Passport getPassport() {
+        return passport;
     }
 
-    public void setItems(List<Item> items) {
-        this.items = items;
-    }
-
-    public void addItem(Item item){
-        if (items == null) items = new ArrayList<>();
-        items.add(item);
-        item.setPerson(this);
+    public void setPassport(Passport passport) {
+        this.passport = passport;
+        passport.setPerson(this);
     }
 
     @Override
     public String toString() {
-        return "name='" + name + ", age=";
+        return "Name='" + name + ", age=" + age;
     }
 }
