@@ -1,27 +1,26 @@
-package org.example.ls3.model;
-
+package org.example.ls5.model;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Person")
-public class Person {
-
+@Table(name = "Item")
+public class Item {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
+    private int id;
 
-    @Column(name = "age")
-    int age;
+    @ManyToOne
+    @JoinColumn(name = "person_id", referencedColumnName = "id")
+    private Person person;
 
     @Column(name = "name")
-    String name;
+    private String name;
 
-    public Person(){}
+    public Item() {
+    }
 
-    public Person(int age, String name) {
-        this.age = age;
+    public Item(String name) {
         this.name = name;
     }
 
@@ -33,12 +32,12 @@ public class Person {
         this.id = id;
     }
 
-    public int getAge() {
-        return age;
+    public Person getPerson() {
+        return person;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
     public String getName() {
@@ -51,6 +50,6 @@ public class Person {
 
     @Override
     public String toString() {
-        return "id=" + id + ", age=" + age + ", name='" + name;
+        return "name='" + name;
     }
 }
