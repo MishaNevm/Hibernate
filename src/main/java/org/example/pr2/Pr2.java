@@ -14,7 +14,12 @@ public class Pr2 {
         Session session = sessionFactory.getCurrentSession();
         try (sessionFactory) {
             session.beginTransaction();
-            session.remove(session.get(Person.class, 1));
+            Person person = new Person("Misha", 23);
+            Passport passport = new Passport(12345);
+            person.setPassport(passport);
+            session.save(person);
+            System.out.println(passport.getId());
+            System.out.println(passport.getOwner());
             session.getTransaction().commit();
         }
     }
