@@ -1,4 +1,4 @@
-package org.example.ls7.model;
+package org.example.ls8.model;
 
 import org.hibernate.annotations.Cascade;
 
@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "Movie")
-public class Movie {
+@Table(name = "Person")
+public class Person {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,14 +17,14 @@ public class Movie {
     @Column(name = "name")
     private String name;
 
-    @ManyToMany(mappedBy = "movies")
-    @Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.DELETE})
-    private List<Actor> actors;
+    @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    private List<Item> items;
 
-    public Movie() {
+    public Person() {
     }
 
-    public Movie(String name) {
+    public Person(String name) {
         this.name = name;
     }
 
@@ -44,27 +44,25 @@ public class Movie {
         this.name = name;
     }
 
-    public List<Actor> getActors() {
-        return actors;
+    public List<Item> getItems() {
+        return items;
     }
 
-    public void setActors(List<Actor> actors) {
-        this.actors = actors;
+    public void setItems(List<Item> items) {
+        this.items = items;
     }
 
     @Override
     public String toString() {
-        return "Movie{" +
-                "name='" + name + '\'' +
-                '}';
+        return "name " + name;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Movie movie = (Movie) o;
-        return id == movie.id && Objects.equals(name, movie.name);
+        Person person = (Person) o;
+        return id == person.id && Objects.equals(name, person.name);
     }
 
     @Override
